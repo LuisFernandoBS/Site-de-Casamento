@@ -1,0 +1,10 @@
+{
+  "description": "Um convite digital de casamento para compartilhar a história do casal, informar os convidados e facilitar confirmações de presença e presentes.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
