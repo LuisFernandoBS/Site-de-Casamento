@@ -35,6 +35,16 @@ import { submitRsvp, type RsvpPayload } from "./services/rsvp"
 import heroPhoto from "./assets/img-1.jpeg"
 import galleryPhotoOne from "./assets/img-2.jpeg"
 import galleryPhotoTwo from "./assets/img-3.jpeg"
+import qr50 from "./assets/qr-code/qr-50.jpeg"
+import qr100 from "./assets/qr-code/qr-100.jpeg"
+import qr250 from "./assets/qr-code/qr-250.jpeg"
+import qr500 from "./assets/qr-code/qr-500.jpeg"
+import qr1000 from "./assets/qr-code/qr-1000.jpeg"
+import qr1500 from "./assets/qr-code/qr-1500.jpeg"
+import qr2000 from "./assets/qr-code/qr-2000.jpeg"
+import qr2500 from "./assets/qr-code/qr-2500.jpeg"
+import qr5000 from "./assets/qr-code/qr-5000.jpeg"
+import qrSurprise from "./assets/qr-code/qr-surpresa.jpeg"
 
 const nav = [
   ["Início", "#inicio"],
@@ -394,24 +404,35 @@ function Event() {
 }
 
 type FormData = RsvpPayload & {
-  companionName: string
   dietaryRestrictions: string
-  message: string
 }
 const initialForm: FormData = {
   fullName: "",
   attending: true,
   guestCount: 1,
-  companionName: "",
   dietaryRestrictions: "",
-  message: "",
 }
+
+const giftOptions = [
+  { label: "R$ 50", value: 50, image: qr50 },
+  { label: "R$ 100", value: 100, image: qr100 },
+  { label: "R$ 250", value: 250, image: qr250 },
+  { label: "R$ 500", value: 500, image: qr500 },
+  { label: "R$ 1.000", value: 1000, image: qr1000 },
+  { label: "R$ 1.500", value: 1500, image: qr1500 },
+  { label: "R$ 2.000", value: 2000, image: qr2000 },
+  { label: "R$ 2.500", value: 2500, image: qr2500 },
+  { label: "R$ 5.000", value: 5000, image: qr5000 },
+  { label: "Surpresa", value: "surprise", image: qrSurprise },
+] as const
 
 function Rsvp() {
   const [form, setForm] = useState(initialForm)
   const [status, setStatus] =
     useState<"idle" | "sending" | "success" | "error">("idle")
   const [error, setError] = useState("")
+  const [giftStep, setGiftStep] = useState(false)
+  const [giftChoice, setGiftChoice] = useState<number | "surprise" | "none" | null>(null)
   const update = <K extends keyof FormData>(key: K, value: FormData[K]) =>
     setForm((v) => ({ ...v, [key]: value }))
   async function send(e: FormEvent) {
@@ -422,6 +443,14 @@ function Rsvp() {
       setStatus("error")
       return
     }
+    if (!giftStep) {
+      if (form.attending) setGiftStep(true)
+      else submitConfirmation()
+      return
+    }
+    submitConfirmation()
+  }
+  async function submitConfirmation() {
     setStatus("sending")
     try {
       await submitRsvp(form)
@@ -447,7 +476,7 @@ function Rsvp() {
         <Reveal className="rsvp-note">
           <Users size={20} />
           <span>
-            <b>Confirme com carinho</b>Preencha uma resposta por família.
+            <b>Confirme com carinho</b>Informe sua presença individualmente.
           </span>
         </Reveal>
       </div>
@@ -507,52 +536,58 @@ function Rsvp() {
                 </div>
               </fieldset>
               {form.attending && (
-                <>
-                  <div className="form-grid">
-                    <label>
-                      <span>Quantidade de pessoas *</span>
-                      <input
-                        type="number"
-                        min="1"
-                        max="10"
-                        value={form.guestCount}
-                        onChange={(e) =>
-                          update("guestCount", Number(e.target.value))
-                        }
-                      />
-                    </label>
-                    <label>
-                      <span>Nome do acompanhante</span>
-                      <input
-                        value={form.companionName}
-                        onChange={(e) =>
-                          update("companionName", e.target.value)
-                        }
-                        placeholder="Quando aplicável"
-                      />
-                    </label>
-                  </div>
-                  <label>
-                    <span>Restrições alimentares</span>
-                    <input
-                      value={form.dietaryRestrictions}
-                      onChange={(e) =>
-                        update("dietaryRestrictions", e.target.value)
-                      }
-                      placeholder="Conte-nos para cuidarmos de você"
-                    />
-                  </label>
-                </>
+                <label>
+                  <span>Restrições alimentares</span>
+                  <input
+                    value={form.dietaryRestrictions}
+                    onChange={(e) =>
+                      update("dietaryRestrictions", e.target.value)
+                    }
+                    placeholder="Conte-nos para cuidarmos de você"
+                  />
+                </label>
               )}
-              <label>
-                <span>Mensagem para os noivos</span>
-                <textarea
-                  rows={3}
-                  value={form.message}
-                  onChange={(e) => update("message", e.target.value)}
-                  placeholder="Deixe uma palavra de carinho (opcional)"
-                />
-              </label>
+              {giftStep && form.attending && (
+                <div className="gift-choice-step">
+                  <div className="gift-choice-heading">
+                    <p className="eyebrow">Presente opcional</p>
+                    <h3>Enviar um presente para os noivos</h3>
+                    <p>Escolha um valor ou não enviar presente. Essa etapa é opcional.</p>
+                  </div>
+                  <div className="gift-options">
+                    {giftOptions.map((option) => (
+                      <button
+                        type="button"
+                        key={option.label}
+                        className={giftChoice === option.value ? "active" : ""}
+                        onClick={() => setGiftChoice(option.value)}
+                      >
+                        {option.label}
+                      </button>
+                    ))}
+                    <button
+                      type="button"
+                      className={giftChoice === "none" ? "active" : ""}
+                      onClick={() => setGiftChoice("none")}
+                    >
+                      Sem presente
+                    </button>
+                  </div>
+                  {giftChoice && giftChoice !== "none" && (
+                    <div className="gift-qr-result">
+                      <img
+                        src={giftOptions.find((option) => option.value === giftChoice)?.image}
+                        alt="QR Code do presente escolhido"
+                      />
+                      <span>
+                        {giftChoice === "surprise"
+                          ? "Surpresa escolhida pelos noivos"
+                          : `Presente de R$ ${giftChoice.toLocaleString("pt-BR")}`}
+                      </span>
+                    </div>
+                  )}
+                </div>
+              )}
               {status === "error" && (
                 <p className="form-error">
                   <AlertCircle size={16} />
@@ -566,7 +601,9 @@ function Rsvp() {
                   </>
                 ) : (
                   <>
-                    Confirmar resposta <Send size={16} />
+                    {giftStep || !form.attending
+                      ? <>Finalizar confirmação <Send size={16} /></>
+                      : <>Escolher presente <Gift size={16} /></>}
                   </>
                 )}
               </button>
