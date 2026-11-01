@@ -5,7 +5,7 @@ const key = import.meta.env.SUPABASE_ANON_KEY as string | undefined
 
 if (!url || !key) {
   console.warn(
-    "Supabase não configurado. Defina VITE_SUPABASE_URL e VITE_SUPABASE_ANON_KEY.",
+    "Supabase não configurado. Defina SUPABASE_URL e SUPABASE_ANON_KEY.",
   )
 }
 
