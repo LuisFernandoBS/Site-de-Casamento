@@ -134,7 +134,8 @@ function Ornament() {
 function Hero() {
   const reduced = useReducedMotion()
   const { scrollY } = useScroll()
-  const y = useTransform(scrollY, [0, 700], [0, reduced ? 0 : 45])
+  const y = useTransform(scrollY, [0, 700], [0, reduced ? 0 : 38])
+  const imageY = useTransform(scrollY, [0, 700], [0, reduced ? 0 : -22])
   return (
     <section className="hero" id="inicio">
       <div className="hero-copy">
@@ -172,12 +173,14 @@ function Hero() {
         </a>
       </div>
       <motion.div className="hero-photo-wrap" style={{ y }}>
-        <img
+        <motion.img
           className="hero-photo"
           src={heroPhoto}
           alt="Fotografia do casal"
           loading="eager"
           decoding="async"
+          fetchPriority="high"
+          style={{ y: imageY, scale: reduced ? 1 : 1.07 }}
         />
         <p className="photo-caption">
           Um encontro escrito por Deus

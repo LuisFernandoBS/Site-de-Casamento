@@ -53,8 +53,8 @@ p { color: var(--brown); line-height: 1.8; }
 .hero-date small { display: block; margin-top: .15rem; color: var(--brown); font-family: var(--serif); font-size: .78rem; }
 .hero-quote { max-width: 29rem; margin: 1.7rem 0 .8rem; font-family: var(--serif); font-size: 1rem; font-style: italic; }
 .scroll-cue { display: inline-flex; align-items: center; gap: .45rem; margin-top: 1rem; color: var(--brown); font-size: .58rem; letter-spacing: .18em; text-decoration: none; text-transform: uppercase; }
-.hero-photo-wrap { width: 82%; height: 58%; max-height: 540px; margin-left: 10%; padding: .5rem; align-self: center; border: 1px solid rgba(185,154,95,.5); box-shadow: 8px 8px 0 var(--ivory), 9px 9px 0 rgba(185,154,95,.35); background: var(--ivory); }
-.hero-photo { width: 100%; height: 100%; object-fit: cover; object-position: center 35%; }
+.hero-photo-wrap { position: relative; width: 82%; height: 58%; max-height: 540px; margin-left: 10%; padding: .5rem; align-self: center; overflow: hidden; border: 1px solid rgba(185,154,95,.5); box-shadow: 8px 8px 0 var(--ivory), 9px 9px 0 rgba(185,154,95,.35); background: var(--ivory); }
+.hero-photo { width: 100%; height: 100%; object-fit: cover; object-position: center 35%; will-change: transform; }
 .photo-caption { position: absolute; right: -.3rem; bottom: -1.1rem; z-index: 2; min-width: 140px; margin: 0; padding: .8rem 1.1rem; background: var(--paper); color: var(--ink); font-family: var(--serif); font-size: .72rem; text-align: right; box-shadow: 0 4px 15px rgba(62,56,47,.05); }
 .photo-caption small { display: block; margin-top: .15rem; color: var(--gold); font-family: var(--sans); font-size: .42rem; letter-spacing: .12em; text-transform: uppercase; }
 
