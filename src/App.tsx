@@ -159,17 +159,13 @@ function Hero() {
         </a>
       </div>
       <motion.div className="hero-photo-wrap" style={{ y }}>
-        <div
-          className="photo-placeholder hero-photo"
-          role="img"
-          aria-label="Espaço reservado para fotografia vertical do casal"
-        >
-          <div>
-            <Heart size={25} />
-            <span>Fotografia do casal</span>
-            <small>formato vertical preservado</small>
-          </div>
-        </div>
+        <img
+          className="hero-photo"
+          src="/img/img-1.jpeg"
+          alt="Fotografia do casal"
+          loading="eager"
+          decoding="async"
+        />
         <p className="photo-caption">
           Um encontro escrito por Deus <small>Salvador · Bahia</small>
         </p>
@@ -302,14 +298,20 @@ function Gallery() {
         <p>Em breve, nossas fotografias favoritas estarão reunidas aqui.</p>
       </Reveal>
       <Reveal className="photo-grid">
-        {[1, 2, 3].map((n) => (
-          <div className={`photo-placeholder photo-${n}`} key={n}>
-            <div>
-              <span>Fotografia 0{n}</span>
-              <small>enquadramento vertical</small>
-            </div>
-          </div>
-        ))}
+        <img
+          className="gallery-photo"
+          src="/img/img-2.jpeg"
+          alt="Fotografia do casal"
+          loading="lazy"
+          decoding="async"
+        />
+        <img
+          className="gallery-photo"
+          src="/img/img-3.jpeg"
+          alt="Fotografia do casal"
+          loading="lazy"
+          decoding="async"
+        />
       </Reveal>
     </section>
   )
