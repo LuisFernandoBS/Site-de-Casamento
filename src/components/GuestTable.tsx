@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react"
-import { ArrowDown, ArrowUp, ChevronDown, Download, Edit, Plus, Search, Trash2 } from "lucide-react"
+import { ChevronDown, Download, Edit, Plus, Search, Trash2, Users, UserCheck, UserX } from "lucide-react"
 import type { Guest } from "@/lib/types"
 import { exportGuestsToCsv, statusLabel } from "@/services/guests"
 import { StatusBadge } from "./StatusBadge"
@@ -61,17 +61,44 @@ export function GuestTable({
   }, [guests, query, statusFilter, sort])
 
   const toggleSort = (k: SortKey) => setSort((s) => (s === k ? "date" : k))
+  const confirmedCount = guests.filter((guest) => guest.status === "confirmed").length
+  const declinedCount = guests.filter((guest) => guest.status === "declined").length
 
   return (
     <section className="admin-table-wrap">
+      <div className="guest-manager-heading">
+        <div>
+          <p>Lista de presença</p>
+          <h2>Gestão de Convidados</h2>
+        </div>
+        <button className="button" onClick={onAdd}>
+          <Plus size={16} /> Novo convidado
+        </button>
+      </div>
+
+      <div className="guest-stat-grid">
+        <div className="guest-stat-card">
+          <span className="guest-stat-icon"><Users size={18} /></span>
+          <div><strong>{guests.length}</strong><small>Total cadastrados</small></div>
+        </div>
+        <div className="guest-stat-card guest-stat-card--confirmed">
+          <span className="guest-stat-icon"><UserCheck size={18} /></span>
+          <div><strong>{confirmedCount}</strong><small>Confirmados</small></div>
+        </div>
+        <div className="guest-stat-card guest-stat-card--declined">
+          <span className="guest-stat-icon"><UserX size={18} /></span>
+          <div><strong>{declinedCount}</strong><small>Não comparecerão</small></div>
+        </div>
+      </div>
+
       <div className="admin-table__toolbar">
         <div className="admin-search">
           <Search size={16} />
           <input
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Pesear por nome, e-mail ou acompanhante"
-            aria-label="Pesear convidados"
+            placeholder="Pesquisar por nome, e-mail ou acompanhante"
+            aria-label="Pesquisar convidados"
           />
         </div>
         <div className="admin-filter">
@@ -102,9 +129,6 @@ export function GuestTable({
             ))}
           </div>
         </div>
-        <button className="button button--ghost" onClick={onAdd}>
-          <Plus size={16} /> Adicionar
-        </button>
       </div>
 
       <div className="admin-table">
