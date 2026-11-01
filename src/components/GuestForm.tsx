@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { X } from "lucide-react"
+import { UserPlus } from "lucide-react"
 import type { Guest } from "@/lib/types"
 import { statusLabel } from "@/services/guests"
 
@@ -73,21 +73,25 @@ export function GuestForm({
       >
         <header className="admin-modal__header">
           <div>
-            <p className="eyebrow">Convidado</p>
-            <h2 id="guest-form-title">
-              {initial ? "Editar convidado" : "C cadastre um convidado"}
-            </h2>
+            <span className="admin-modal__icon"><UserPlus size={20} /></span>
+            <div>
+              <p className="eyebrow">{initial ? "Editar cadastro" : "Novo convidado"}</p>
+              <h2 id="guest-form-title">
+                {initial ? "Atualizar convidado" : "Cadastrar um convidado"}
+              </h2>
+            </div>
           </div>
           <button
-            className="admin-icon-button"
+            className="admin-modal__close"
             onClick={onClose}
+            type="button"
             aria-label="Fechar"
           >
-            <X size={18} />
+            ×
           </button>
         </header>
 
-        <form className="admin-modal__body admin-form" onSubmit={submit}>
+        <form id="guest-form" className="admin-modal__body admin-form" onSubmit={submit}>
           <label className="admin-field">
             <span>Nome completo *</span>
             <input
@@ -174,7 +178,8 @@ export function GuestForm({
             </button>
             <button
               className="button"
-              onClick={submit}
+              type="submit"
+              form="guest-form"
               disabled={saving}
             >
               {saving ? "Salvando..." : " Salvar"}
