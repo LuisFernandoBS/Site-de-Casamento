@@ -68,7 +68,7 @@ p { color: var(--brown); line-height: 1.8; }
 .hero-photo-orbit { position: absolute; width: 42%; aspect-ratio: 1; right: -22%; top: -18%; z-index: 2; border: 1px solid rgba(185,154,95,.58); border-radius: 50%; animation: photoOrbit 14s linear infinite; pointer-events: none; }
 .hero-photo-orbit::before { content: ""; position: absolute; width: 7px; aspect-ratio: 1; left: 2px; top: 48%; border-radius: 50%; background: #fff; box-shadow: 0 0 10px rgba(185,154,95,.95); }
 .hero-photo { width: 100%; height: 100%; object-fit: cover; object-position: center 35%; will-change: transform; filter: saturate(.92) contrast(.98); }
-.photo-caption { position: absolute; right: -.3rem; bottom: -1.1rem; z-index: 2; min-width: 140px; margin: 0; padding: .8rem 1.1rem; background: var(--paper); color: var(--ink); font-family: var(--serif); font-size: .72rem; text-align: right; box-shadow: 0 4px 15px rgba(62,56,47,.05); }
+.photo-caption { position: absolute; right: -.3rem; bottom: -1.1rem; z-index: 2; min-width: 140px; margin: 0; padding: .8rem 1.3rem; background: var(--paper); color: var(--ink); font-family: var(--serif); font-size: .72rem; text-align: right; box-shadow: 0 4px 15px rgba(62,56,47,.05); }
 .photo-caption small { display: block; margin-top: .15rem; color: var(--gold); font-family: var(--sans); font-size: .42rem; letter-spacing: .12em; text-transform: uppercase; }
 
 .welcome { min-height: 690px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
