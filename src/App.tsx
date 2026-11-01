@@ -82,7 +82,7 @@ function Header() {
   return (
     <header className="site-header">
       <a className="brand" href="#inicio" aria-label="Voltar ao início">
-        <img src={favicon} alt="" />
+        <Heart size={15} />
         <span>Nós</span>
       </a>
       <nav className="desktop-nav" aria-label="Navegação principal">
