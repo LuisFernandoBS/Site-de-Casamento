@@ -466,7 +466,6 @@ function Gallery() {
             transition={{ duration: 1.8, delay: .15 }}
           />
           <span className="story-photo__shine" aria-hidden="true" />
-          <figcaption>Onde tudo começou</figcaption>
         </motion.figure>
         <motion.figure
           className="story-photo story-photo--right"
@@ -486,7 +485,6 @@ function Gallery() {
             transition={{ duration: 1.8, delay: .32 }}
           />
           <span className="story-photo__shine" aria-hidden="true" />
-          <figcaption>O amor que nos trouxe até aqui</figcaption>
         </motion.figure>
       </motion.div>
     </section>
