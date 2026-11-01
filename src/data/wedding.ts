@@ -21,7 +21,7 @@ export const prayerParagraphs = [
 
 export const letters = [
   {
-    title: "Dele para ela",
+    title: "Palavras dele para ela",
     paragraphs: [
       "Como alguém tão esperada, pôde me surpreender de tanto?",
       "Você é mais que um presente de Deus, você é uma obra prima, uma jóia preciosa, uma pérola escolhida, uma princesa forjada.",
@@ -32,7 +32,7 @@ export const letters = [
     ],
   },
   {
-    title: "Dela para ele",
+    title: "Palavras dela para ele",
     paragraphs: [
       "Meu amor,",
       "Como Deus foi generoso comigo quando te trouxe pra minha vida. Eu digo que a melhor parte do esperar é saber que a recompensa foi você.",

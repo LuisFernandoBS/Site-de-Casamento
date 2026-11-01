@@ -10,7 +10,6 @@ import {
   Check,
   Church,
   Clock3,
-  Copy,
   ExternalLink,
   Gift,
   Heart,
@@ -603,7 +602,7 @@ function Rsvp() {
                   <>
                     {giftStep || !form.attending
                       ? <>Finalizar confirmação <Send size={16} /></>
-                      : <>Escolher presente <Gift size={16} /></>}
+                      : <>Confirmar presença <Check size={16} /></>}
                   </>
                 )}
               </button>
@@ -616,61 +615,28 @@ function Rsvp() {
 }
 
 function Gifts() {
-  const [copied, setCopied] = useState(false)
-  const copy = async () => {
-    if (!wedding.pixKey) return
-    await navigator.clipboard.writeText(wedding.pixKey)
-    setCopied(true)
-    setTimeout(() => setCopied(false), 2200)
-  }
   return (
     <section className="gifts section" id="presentes">
       <Reveal className="section-heading centered">
-        <p className="eyebrow">Lista de presentes</p>
+        <p className="eyebrow">Mimo especial</p>
         <h2>Seu carinho também é um presente</h2>
         <p>
-          Celebrar esse momento ao lado de pessoas tão especiais já é um
-          presente enorme. Mas, se desejar nos presentear, preparamos uma forma
-          simples e especial.
+          Celebrar esse momento ao nosso lado já é o maior presente que
+          poderíamos receber. Se quiser nos mimar, você pode escolher um gesto
+          especial durante a confirmação da presença.
         </p>
       </Reveal>
       <Reveal className="gift-card">
-        <div className="qr">
-          {wedding.pixQrCode ? (
-            <img src={wedding.pixQrCode} alt="QR Code Pix" />
-          ) : (
-            <>
-              <Gift size={34} />
-              <span>QR Code Pix</span>
-              <small>será inserido aqui</small>
-            </>
-          )}
+        <div className="gift-card-icon">
+          <Heart size={28} />
         </div>
-        <div>
-          <p className="eyebrow">Presente via Pix</p>
-          <h3>
-            {wedding.pixKey
-              ? "Um gesto que guardaremos com carinho"
-              : "Dados em preparação"}
-          </h3>
-          <span className="pix-label">Chave Pix</span>
-          <div className="pix-key">
-            <code>
-              {wedding.pixKey || "Chave Pix será disponibilizada em breve"}
-            </code>
-            <button
-              onClick={copy}
-              disabled={!wedding.pixKey}
-              aria-label="Copiar chave Pix"
-            >
-              {copied ? <Check /> : <Copy />}
-            </button>
-          </div>
-          {copied && (
-            <p className="copied">
-              <Check size={14} /> Chave copiada com sucesso
-            </p>
-          )}
+        <div className="gift-card-copy">
+          <p className="eyebrow">Uma lembrança do nosso amor</p>
+          <h3>Escolha um presente com todo o seu carinho</h3>
+          <p>Os valores estão disponíveis de forma prática e segura na confirmação de presença.</p>
+          <a className="gift-confirm-link" href="#presenca">
+            Confirmar presença <Heart size={15} />
+          </a>
         </div>
       </Reveal>
     </section>
