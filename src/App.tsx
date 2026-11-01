@@ -646,7 +646,5 @@ function Footer() {
       </div>
       <strong>15 · 12 · 2026</strong>
       <small>O nosso para sempre começa aqui</small>
-    </footer>
-  )
-}
+export default function App() { ... }
 export function App() { return null }
