@@ -155,11 +155,18 @@ export function AdminPage() {
                     {guests.filter((g) => g.source === "admin").length}
                   </strong>
                 </li>
-                <li>
-                  <span>Respostas públicas</span>
-                  <strong>
-                    {guests.filter((g) => g.source === "public").length}
-                  </strong>
+                <li className="admin-summary__action">
+                  <span>Cadastrar convidados</span>
+                  <button
+                    type="button"
+                    className="button button--ghost"
+                    onClick={() => {
+                      setEditing(null)
+                      setFormOpen(true)
+                    }}
+                  >
+                    Adicionar convidado
+                  </button>
                 </li>
               </ul>
             </section>
