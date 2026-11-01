@@ -136,20 +136,26 @@ function Hero() {
   const { scrollY } = useScroll()
   const y = useTransform(scrollY, [0, 700], [0, reduced ? 0 : 38])
   const imageY = useTransform(scrollY, [0, 700], [0, reduced ? 0 : -22])
-  const magicParticles = [
-    { left: "8%", top: "18%", delay: "0s", size: 4 },
-    { left: "19%", top: "72%", delay: "1.1s", size: 3 },
-    { left: "31%", top: "10%", delay: ".6s", size: 2 },
-    { left: "43%", top: "82%", delay: "1.8s", size: 4 },
-    { left: "57%", top: "14%", delay: "2.4s", size: 3 },
-    { left: "68%", top: "68%", delay: ".2s", size: 2 },
-    { left: "79%", top: "24%", delay: "1.5s", size: 4 },
-    { left: "91%", top: "76%", delay: ".9s", size: 3 },
-    { left: "96%", top: "40%", delay: "2.8s", size: 2 },
-  ]
+  const magicParticles = Array.from({ length: 28 }, (_, index) => ({
+    left: `${4 + ((index * 37) % 94)}%`,
+    top: `${8 + ((index * 61) % 84)}%`,
+    delay: `${(index * 0.27) % 4}s`,
+    size: index % 5 === 0 ? 5 : index % 3 === 0 ? 3 : 2,
+    duration: `${3.4 + (index % 5) * .65}s`,
+  }))
 
   return (
     <section className="hero" id="inicio">
+      <motion.div
+        className="hero-light-sweep"
+        aria-hidden="true"
+        initial={{ x: "-140%", opacity: 0 }}
+        animate={{ x: "240%", opacity: [0, .9, 0] }}
+        transition={{ duration: 2.4, delay: 1.2, ease: [0.22, 1, 0.36, 1] }}
+      />
+      <div className="hero-rings" aria-hidden="true">
+        <span /><span /><span />
+      </div>
       <div className="hero-magic" aria-hidden="true">
         {magicParticles.map((particle, index) => (
           <span
@@ -158,6 +164,7 @@ function Hero() {
               left: particle.left,
               top: particle.top,
               animationDelay: particle.delay,
+              animationDuration: particle.duration,
               width: particle.size,
               height: particle.size,
             }}
@@ -175,9 +182,9 @@ function Hero() {
         </motion.p>
         <motion.h1
           className="hero-stagger"
-          initial={{ opacity: 0, y: 38, filter: "blur(12px)" }}
-          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-          transition={{ duration: 1.05, delay: 0.18, ease: [0.16, 1, 0.3, 1] }}
+          initial={{ opacity: 0, y: 54, scale: 0.88, filter: "blur(18px)" }}
+          animate={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+          transition={{ duration: 1.25, delay: 0.18, ease: [0.16, 1, 0.3, 1] }}
         >
           O nosso <em>para sempre</em>
         </motion.h1>
@@ -214,9 +221,9 @@ function Hero() {
       <motion.div
         className="hero-photo-wrap"
         style={{ y }}
-        initial={{ opacity: 0, clipPath: "inset(18% 12% 18% 12% round 3px)" }}
-        animate={{ opacity: 1, clipPath: "inset(0% 0% 0% 0% round 3px)" }}
-        transition={{ duration: 1.35, delay: .25, ease: [0.16, 1, 0.3, 1] }}
+        initial={{ opacity: 0, scale: 0.72, rotate: 4, clipPath: "inset(32% 28% 32% 28% round 50%)" }}
+        animate={{ opacity: 1, scale: 1, rotate: 0, clipPath: "inset(0% 0% 0% 0% round 3px)" }}
+        transition={{ duration: 1.6, delay: .2, ease: [0.16, 1, 0.3, 1] }}
       >
         <span className="hero-photo-orbit" aria-hidden="true" />
         <motion.img
