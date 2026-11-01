@@ -93,13 +93,7 @@ p { color: var(--brown); line-height: 1.8; }
 
 .gallery { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; overflow: hidden; }
 .photo-grid { height: 480px; display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
-.gallery-photo { width: 100%; height: 100%; object-fit: cover; filter: saturate(.82) contrast(1.04); transition: transform .8s cubic-bezier(.2,.7,.2,1), filter .6s ease, box-shadow .6s ease; }
-.photo-grid { position: relative; }
-.photo-grid::before { content: ""; position: absolute; z-index: 2; inset: 18px -10px -18px 42%; border: 1px solid rgba(185,154,95,.65); pointer-events: none; }
-.photo-grid::after { content: "Amor em cada capítulo"; position: absolute; z-index: 3; right: -2px; bottom: 24px; padding: .65rem 1rem; background: rgba(250,248,243,.94); color: var(--gold); font-family: var(--serif); font-size: .78rem; font-style: italic; letter-spacing: .08em; }
-.gallery-photo:first-child { clip-path: inset(0 3% 4% 0 round 48% 48% 3px 3px); transform: rotate(-1deg); }
-.gallery-photo:last-child { clip-path: inset(4% 0 0 3% round 48% 48% 3px 3px); transform: rotate(1deg); }
-.gallery-photo:hover { filter: saturate(1.05) contrast(1.02); transform: scale(1.025) rotate(0); box-shadow: 0 18px 45px rgba(51,46,39,.16); }
+.gallery-photo { width: 100%; height: 100%; object-fit: cover; }
 
 .event { position: relative; z-index: 2; clear: both; display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; background: var(--paper); overflow: hidden; scroll-margin-top: 60px; }
 .event-main { display: grid; grid-template-columns: 1fr .9fr; gap: 2rem; align-items: end; }
@@ -206,9 +200,6 @@ footer div:has(svg) { display: flex; align-items: center; gap: .2rem; color: var
   .gift-card-copy { padding: 2rem 1.5rem; }
   .gift-card-copy h3 { margin-left: auto; margin-right: auto; }
   .gift-confirm-link { margin: 0 auto; }
-  .photo-grid::before { inset: 12px 8px -12px 38%; }
-  .photo-grid::after { right: 8px; bottom: 16px; }
-  .gallery-photo:first-child, .gallery-photo:last-child { clip-path: inset(0 2% round 48% 48% 3px 3px); transform: none; }
 }
 
 /* Admin panel */
