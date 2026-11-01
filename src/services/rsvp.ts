@@ -35,7 +35,9 @@ export async function submitRsvp(payload: RsvpPayload): Promise<{ id: string }> 
       )
     }
     throw new Error(
-      "Não foi possível registrar sua resposta. Por favor, tente novamente.",
+      error.code === "42501"
+        ? "Não foi possível salvar sua resposta: permissões do cadastro indisponíveis."
+        : "Não foi possível registrar sua resposta. Por favor, tente novamente.",
     )
   }
 
