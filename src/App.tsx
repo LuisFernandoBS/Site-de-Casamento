@@ -1,7 +1,4 @@
 import { useEffect, useState } from "react"
-import img1 from "../public/img/img-1.jpeg"
-import img2 from "../public/img/img-2.jpeg"
-import img3 from "../public/img/img-3.jpeg"
 import { useAdminAuth } from "@/contexts/AdminAuthContext"
 import { AdminAuthProvider } from "@/contexts/AdminAuthContext"
 import { AdminLogin } from "@/pages/AdminLogin"
@@ -164,7 +161,7 @@ function Hero() {
       <motion.div className="hero-photo-wrap" style={{ y }}>
         <img
           className="hero-photo"
-          src={img1}
+          src="/img/img-1.jpeg"
           alt="Fotografia do casal"
           loading="eager"
           decoding="async"
@@ -303,14 +300,14 @@ function Gallery() {
       <Reveal className="photo-grid">
         <img
           className="gallery-photo"
-          src={img2}
+          src="/img/img-2.jpeg"
           alt="Fotografia do casal"
           loading="lazy"
           decoding="async"
         />
         <img
           className="gallery-photo"
-          src={img3}
+          src="/img/img-3.jpeg"
           alt="Fotografia do casal"
           loading="lazy"
           decoding="async"
