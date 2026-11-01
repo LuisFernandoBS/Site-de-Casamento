@@ -136,28 +136,56 @@ function Hero() {
   const { scrollY } = useScroll()
   const y = useTransform(scrollY, [0, 700], [0, reduced ? 0 : 38])
   const imageY = useTransform(scrollY, [0, 700], [0, reduced ? 0 : -22])
+  const magicParticles = [
+    { left: "8%", top: "18%", delay: "0s", size: 4 },
+    { left: "19%", top: "72%", delay: "1.1s", size: 3 },
+    { left: "31%", top: "10%", delay: ".6s", size: 2 },
+    { left: "43%", top: "82%", delay: "1.8s", size: 4 },
+    { left: "57%", top: "14%", delay: "2.4s", size: 3 },
+    { left: "68%", top: "68%", delay: ".2s", size: 2 },
+    { left: "79%", top: "24%", delay: "1.5s", size: 4 },
+    { left: "91%", top: "76%", delay: ".9s", size: 3 },
+    { left: "96%", top: "40%", delay: "2.8s", size: 2 },
+  ]
+
   return (
     <section className="hero" id="inicio">
+      <div className="hero-magic" aria-hidden="true">
+        {magicParticles.map((particle, index) => (
+          <span
+            key={index}
+            style={{
+              left: particle.left,
+              top: particle.top,
+              animationDelay: particle.delay,
+              width: particle.size,
+              height: particle.size,
+            }}
+          />
+        ))}
+      </div>
       <div className="hero-copy">
         <motion.p
-          className="eyebrow"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
+          className="eyebrow hero-stagger"
+          initial={{ opacity: 0, y: 18, letterSpacing: "0.12em" }}
+          animate={{ opacity: 1, y: 0, letterSpacing: "0.32em" }}
+          transition={{ duration: 0.8, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}
         >
           Com a graça de Deus
         </motion.p>
         <motion.h1
-          initial={{ opacity: 0, y: 22 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9 }}
+          className="hero-stagger"
+          initial={{ opacity: 0, y: 38, filter: "blur(12px)" }}
+          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          transition={{ duration: 1.05, delay: 0.18, ease: [0.16, 1, 0.3, 1] }}
         >
           O nosso <em>para sempre</em>
         </motion.h1>
         <motion.div
-          className="hero-date"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.35 }}
+          className="hero-date hero-stagger"
+          initial={{ opacity: 0, y: 24, scale: 0.96 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 0.85, delay: 0.48, ease: [0.16, 1, 0.3, 1] }}
         >
           <span>15</span>
           <div>
@@ -165,14 +193,32 @@ function Hero() {
             <small>2026 · às 15h</small>
           </div>
         </motion.div>
-        <p className="hero-quote">
+        <motion.p
+          className="hero-quote hero-stagger"
+          initial={{ opacity: 0, y: 18 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.85, delay: 0.68, ease: [0.16, 1, 0.3, 1] }}
+        >
           “Acima de tudo, porém, revistam-se do amor, que é o elo perfeito.”
-        </p>
-        <a className="scroll-cue" href="#boas-vindas">
+        </motion.p>
+        <motion.a
+          className="scroll-cue hero-stagger"
+          href="#boas-vindas"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.9 }}
+        >
           Descubra <ArrowDown size={15} />
-        </a>
+        </motion.a>
       </div>
-      <motion.div className="hero-photo-wrap" style={{ y }}>
+      <motion.div
+        className="hero-photo-wrap"
+        style={{ y }}
+        initial={{ opacity: 0, clipPath: "inset(18% 12% 18% 12% round 3px)" }}
+        animate={{ opacity: 1, clipPath: "inset(0% 0% 0% 0% round 3px)" }}
+        transition={{ duration: 1.35, delay: .25, ease: [0.16, 1, 0.3, 1] }}
+      >
+        <span className="hero-photo-orbit" aria-hidden="true" />
         <motion.img
           className="hero-photo"
           src={heroPhoto}
