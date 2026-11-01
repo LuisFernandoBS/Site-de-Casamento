@@ -32,6 +32,9 @@ import {
 } from "motion/react"
 import { letters, prayerParagraphs, wedding } from "./data/wedding"
 import { submitRsvp, type RsvpPayload } from "./services/rsvp"
+import heroPhoto from "./assets/img-1.jpeg"
+import galleryPhotoOne from "./assets/img-2.jpeg"
+import galleryPhotoTwo from "./assets/img-3.jpeg"
 
 const nav = [
   ["Início", "#inicio"],
@@ -161,7 +164,7 @@ function Hero() {
       <motion.div className="hero-photo-wrap" style={{ y }}>
         <img
           className="hero-photo"
-          src="/img/img-1.jpeg"
+          src={heroPhoto}
           alt="Fotografia do casal"
           loading="eager"
           decoding="async"
@@ -300,14 +303,14 @@ function Gallery() {
       <Reveal className="photo-grid">
         <img
           className="gallery-photo"
-          src="/img/img-2.jpeg"
+          src={galleryPhotoOne}
           alt="Fotografia do casal"
           loading="lazy"
           decoding="async"
         />
         <img
           className="gallery-photo"
-          src="/img/img-3.jpeg"
+          src={galleryPhotoTwo}
           alt="Fotografia do casal"
           loading="lazy"
           decoding="async"
