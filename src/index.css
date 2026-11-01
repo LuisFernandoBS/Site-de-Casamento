@@ -30,7 +30,7 @@
 }
 
 .hero { position: relative; min-height: 100svh; display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 2rem; padding: 4rem 2rem; }
-.hero-photo-wrap { position: relative; aspect-ratio: 3/4; overflow: hidden; }
+.hero-photo-wrap { position: relative; overflow: hidden; }
 .hero-photo { width: 100%; height: 100%; object-fit: cover; display: block; }
 .site-header { position: sticky; top: 0; z-index: 50; display: flex; align-items: center; justify-content: space-between; padding: 1rem 2rem; background: rgba(250,248,243,.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--champagne); }
 .brand { display: inline-flex; align-items: center; gap: .4rem; font-family: var(--serif); font-size: 1.1rem; color: var(--ink); text-decoration: none; }
