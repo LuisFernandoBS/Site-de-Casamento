@@ -37,7 +37,6 @@ export function GuestTable({
   const exportOptions: { label: string; list: Guest[] }[] = [
     { label: "Todos os convidados", list: guests },
     { label: "Somente confirmados", list: guests.filter((g) => g.status === "confirmed") },
-    { label: "Somente pendentes", list: guests.filter((g) => g.status === "pending") },
     { label: "Somente não comparecerão", list: guests.filter((g) => g.status === "declined") },
   ]
 
@@ -84,7 +83,6 @@ export function GuestTable({
           >
             <option value="all">Todos os status</option>
             <option value="confirmed">Confirmados</option>
-            <option value="pending">Aguardando resposta</option>
             <option value="declined">Não comparecerão</option>
           </select>
         </div>

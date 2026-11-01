@@ -19,7 +19,7 @@ export function GuestDetailModal({
   const [error, setError] = useState("")
 
   useEffect(() => {
-    setDraft(guest)
+    setDraft(guest.status === "pending" ? { ...guest, status: "confirmed" } : guest)
     setHistory([])
     setError("")
     if (guest) {
@@ -154,7 +154,7 @@ export function GuestDetailModal({
           <fieldset className="admin-field admin-field--full">
             <legend>Status da confirmação</legend>
             <div className="choices choices--row">
-              {(["confirmed", "pending", "declined"] as const).map((s) => (
+              {(["confirmed", "declined"] as const).map((s) => (
                 <label
                   key={s}
                   className={draft.status === s ? "active" : ""}

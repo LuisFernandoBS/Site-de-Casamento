@@ -144,12 +144,6 @@ export function AdminPage() {
                   </strong>
                 </li>
                 <li>
-                  <span>Pendentes</span>
-                  <strong>
-                    {guests.filter((g) => g.status === "pending").length}
-                  </strong>
-                </li>
-                <li>
                   <span>Não comparecerão</span>
                   <strong>
                     {guests.filter((g) => g.status === "declined").length}

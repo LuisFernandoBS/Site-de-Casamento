@@ -31,7 +31,7 @@ export function GuestForm({
     companion_name: initial?.companion_name ?? "",
     dietary_restrictions: initial?.dietary_restrictions ?? "",
     message: initial?.message ?? "",
-    status: initial?.status ?? "pending",
+    status: initial?.status === "confirmed" || initial?.status === "declined" ? initial.status : "confirmed",
   })
   const [error, setError] = useState("")
 
@@ -151,7 +151,7 @@ export function GuestForm({
           <fieldset className="admin-field admin-field--full">
             <legend>Status inicial</legend>
             <div className="choices choices--row">
-              {(["confirmed", "pending", "declined"] as const).map((s) => (
+              {(["confirmed", "declined"] as const).map((s) => (
                 <label key={s} className={form.status === s ? "active" : ""}>
                   <input
                     type="radio"

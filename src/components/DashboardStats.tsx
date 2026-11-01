@@ -1,14 +1,10 @@
-import { Check, Users, X, Clock3, TrendingUp } from "lucide-react"
+import { Check, Users, X } from "lucide-react"
 import type { Guest } from "@/lib/types"
 
 export function DashboardStats({ guests }: { guests: Guest[] }) {
   const total = guests.length
   const confirmed = guests.filter((g) => g.status === "confirmed").length
-  const pending = guests.filter((g) => g.status === "pending").length
   const declined = guests.filter((g) => g.status === "declined").length
-  const companions = guests
-    .filter((g) => g.status === "confirmed")
-    .reduce((sum, g) => sum + (g.guest_count - 1), 0)
 
   const cards = [
     {
@@ -24,22 +20,10 @@ export function DashboardStats({ guests }: { guests: Guest[] }) {
       tone: "bg-[#b7c5ae] text-[#2f4a3a]",
     },
     {
-      label: "Aguardando resposta",
-      value: pending,
-      icon: Clock3,
-      tone: "bg-[#e2cc78] text-[#6b5a1f]",
-    },
-    {
       label: "Não poderão comparecer",
       value: declined,
       icon: X,
       tone: "bg-[#e8c9c9] text-[#7a3b3b]",
-    },
-    {
-      label: "Acompanhantes confirmados",
-      value: companions,
-      icon: TrendingUp,
-      tone: "bg-[#c6a66b] text-[#3f382f]",
     },
   ]
 
@@ -80,10 +64,9 @@ export function DashboardStats({ guests }: { guests: Guest[] }) {
 }
 
 export function StatusChart({ guests }: { guests: Guest[] }) {
-  const total = guests.length || 1
+  const total = guests.filter((g) => g.status === "confirmed" || g.status === "declined").length || 1
   const segments = [
     { label: "Confirmado", value: guests.filter((g) => g.status === "confirmed").length, color: "#b7c5ae" },
-    { label: "Aguardando", value: guests.filter((g) => g.status === "pending").length, color: "#e2cc78" },
     { label: "Não comparecerá", value: guests.filter((g) => g.status === "declined").length, color: "#e8c9c9" },
   ]
   const size = 150
