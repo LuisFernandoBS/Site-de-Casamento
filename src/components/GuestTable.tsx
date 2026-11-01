@@ -136,9 +136,6 @@ export function GuestTable({
           <thead>
             <tr>
               <th>Convidado</th>
-              <th>E-mail</th>
-              <th className="num">Pessoas</th>
-              <th>Acompanhante</th>
               <th>Status</th>
               <th className="num">Confirmado em</th>
               <th className="admin-th-actions">Ações</th>
@@ -147,7 +144,7 @@ export function GuestTable({
           <tbody>
             {filtered.length === 0 ? (
               <tr>
-                <td colSpan={7} className="admin-table__empty">
+                <td colSpan={4} className="admin-table__empty">
                   Nenhum convidado encontrado.
                 </td>
               </tr>
@@ -162,9 +159,6 @@ export function GuestTable({
                       {g.full_name}
                     </button>
                   </td>
-                  <td className="admin-muted">{g.email || "—"}</td>
-                  <td className="num">{g.guest_count}</td>
-                  <td className="admin-muted">{g.companion_name || "—"}</td>
                   <td>
                     <StatusBadge status={g.status} />
                   </td>
