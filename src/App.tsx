@@ -615,6 +615,9 @@ function Rsvp() {
 }
 
 function Gifts() {
+  const [showGiftOptions, setShowGiftOptions] = useState(false)
+  const [giftChoice, setGiftChoice] = useState<(typeof giftOptions)[number]["value"] | null>(null)
+
   return (
     <section className="gifts section" id="presentes">
       <Reveal className="section-heading centered">
@@ -622,21 +625,57 @@ function Gifts() {
         <h2>Seu carinho também é um presente</h2>
         <p>
           Celebrar esse momento ao nosso lado já é o maior presente que
-          poderíamos receber. Se quiser nos mimar, você pode escolher um gesto
-          especial durante a confirmação da presença.
+          poderíamos receber. Se quiser nos mimar, escolha abaixo um gesto
+          especial para os noivos.
         </p>
       </Reveal>
-      <Reveal className="gift-card">
+      <Reveal className="gift-card gift-card-expanded">
         <div className="gift-card-icon">
           <Heart size={28} />
         </div>
         <div className="gift-card-copy">
           <p className="eyebrow">Uma lembrança do nosso amor</p>
           <h3>Escolha um presente com todo o seu carinho</h3>
-          <p>Os valores estão disponíveis de forma prática e segura na confirmação de presença.</p>
-          <a className="gift-confirm-link" href="#presenca">
-            Confirmar presença <Heart size={15} />
-          </a>
+          <p>Escolha um valor e o QR Code correspondente será exibido aqui.</p>
+          <button
+            type="button"
+            className="gift-confirm-link"
+            aria-expanded={showGiftOptions}
+            onClick={() => setShowGiftOptions((current) => !current)}
+          >
+            {showGiftOptions ? "Ocultar valores" : "Escolher presente"}
+            <Heart size={15} />
+          </button>
+
+          {showGiftOptions && (
+            <div className="gift-card-options">
+              <div className="gift-options">
+                {giftOptions.map((option) => (
+                  <button
+                    type="button"
+                    key={option.label}
+                    className={giftChoice === option.value ? "active" : ""}
+                    onClick={() => setGiftChoice(option.value)}
+                  >
+                    {option.label}
+                  </button>
+                ))}
+              </div>
+              {giftChoice && (
+                <div className="gift-qr-result gift-card-qr-result">
+                  <img
+                    src={giftOptions.find((option) => option.value === giftChoice)?.image}
+                    alt={`QR Code para o presente de ${giftChoice === "surprise" ? "surpresa" : giftChoice}`}
+                  />
+                  <span>
+                    {giftChoice === "surprise"
+                      ? "Surpresa escolhida pelos noivos"
+                      : `Presente de R$ ${giftChoice.toLocaleString("pt-BR")}`}
+                  </span>
+                </div>
+              )}
+            </div>
+          )}
         </div>
       </Reveal>
     </section>
