@@ -165,6 +165,15 @@ footer .ornament { margin: .5rem 0; } footer p { margin: .3rem; color: #cfc4b2; 
 footer div:has(svg) { display: flex; align-items: center; gap: .2rem; color: var(--gold); }
 .spin { animation: spin 1s linear infinite; } @keyframes spin { to { transform: rotate(360deg); } }
 
+@media (min-width: 801px) and (max-width: 1500px) {
+  .event { grid-template-columns: 1fr; gap: 2rem; }
+  .event-main { grid-template-columns: 1fr; gap: 1.5rem; }
+  .event-main h2 { max-width: 600px; font-size: 3.8rem; }
+  .event-card { width: 100%; padding: 2rem; }
+  .event-detail { grid-template-columns: 28px minmax(0, 1fr); }
+  .event-card .button { white-space: normal; text-align: center; }
+}
+
 @media (max-width: 800px) {
   .section { padding: 5rem 1.5rem; }
   .site-header { padding: 0 1.5rem; }
