@@ -11,6 +11,11 @@ export type RsvpPayload = {
 }
 
 export async function submitRsvp(payload: RsvpPayload): Promise<{ id: string }> {
+  const nameParts = payload.fullName.trim().split(/\s+/).filter(Boolean)
+  if (nameParts.length < 2 || nameParts.some((part) => part.length < 2)) {
+    throw new Error("Informe seu nome e sobrenome completo.")
+  }
+
   const { data, error } = await supabase
     .from("guests")
     .insert({

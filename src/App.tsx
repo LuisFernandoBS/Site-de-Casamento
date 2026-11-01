@@ -524,11 +524,13 @@ function Rsvp() {
   async function send(e: FormEvent) {
     e.preventDefault()
     setError("")
-    if (form.fullName.trim().length < 3) {
-      setError("Por favor, informe seu nome completo.")
+    const nameParts = form.fullName.trim().split(/\s+/).filter(Boolean)
+    if (nameParts.length < 2 || nameParts.some((part) => part.length < 2)) {
+      setError("Informe seu nome e sobrenome completo.")
       setStatus("error")
       return
     }
+    update("fullName", nameParts.join(" "))
     if (!giftStep) {
       if (form.attending) setGiftStep(true)
       else submitConfirmation()
@@ -597,7 +599,8 @@ function Rsvp() {
                 <input
                   value={form.fullName}
                   onChange={(e) => update("fullName", e.target.value)}
-                  placeholder="Como devemos chamar você?"
+                  placeholder="Digite seu nome e sobrenome"
+                  autoComplete="name"
                 />
               </label>
               <fieldset>
