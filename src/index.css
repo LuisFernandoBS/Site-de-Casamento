@@ -33,6 +33,7 @@ p { color: var(--brown); line-height: 1.8; }
 .site-header { position: sticky; top: 0; z-index: 50; height: 60px; display: flex; align-items: center; justify-content: space-between; padding: 0 5%; border-bottom: 1px solid rgba(185,154,95,.18); background: rgba(250,248,243,.94); backdrop-filter: blur(12px); }
 .brand { gap: .35rem; color: var(--gold); font-family: var(--serif); font-size: 1.05rem; text-decoration: none; }
 .brand svg { width: 13px; }
+.brand img { width: 20px; height: 20px; object-fit: contain; }
 .desktop-nav { display: flex; gap: 2rem; }
 .desktop-nav a { position: relative; color: var(--ink); font-size: .58rem; letter-spacing: .08em; text-decoration: none; text-transform: uppercase; }
 .desktop-nav a:hover::after { width: 100%; }

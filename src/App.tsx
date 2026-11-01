@@ -31,6 +31,7 @@ import {
 } from "motion/react"
 import { letters, prayerParagraphs, wedding } from "./data/wedding"
 import { submitRsvp, type RsvpPayload } from "./services/rsvp"
+import favicon from "./assets/favicon.png"
 import heroPhoto from "./assets/img-1.jpeg"
 import galleryPhotoOne from "./assets/img-2.jpeg"
 import galleryPhotoTwo from "./assets/img-3.jpeg"
@@ -81,7 +82,7 @@ function Header() {
   return (
     <header className="site-header">
       <a className="brand" href="#inicio" aria-label="Voltar ao início">
-        <Heart size={15} />
+        <img src={favicon} alt="" />
         <span>Nós</span>
       </a>
       <nav className="desktop-nav" aria-label="Navegação principal">
@@ -179,7 +180,7 @@ function Hero() {
           decoding="async"
         />
         <p className="photo-caption">
-          Um encontro escrito por Deus <small>Salvador · Bahia</small>
+          Um encontro escrito por Deus
         </p>
       </motion.div>
     </section>
