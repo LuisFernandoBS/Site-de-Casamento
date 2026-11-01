@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "format": "oxfmt"
+    "format": "oxfmt",
+    "build:admin": "vite build --config vite.admin.config.ts --outDir dist-admin"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.118.0",
