@@ -389,29 +389,106 @@ function Letters() {
 }
 
 function Gallery() {
+  const reduced = useReducedMotion()
+  const stars = Array.from({ length: 18 }, (_, index) => ({
+    left: `${4 + ((index * 43) % 92)}%`,
+    top: `${5 + ((index * 29) % 88)}%`,
+    delay: `${(index * .31) % 3.5}s`,
+    duration: `${3.8 + (index % 4) * .8}s`,
+  }))
+
   return (
-    <section className="gallery section">
-      <Reveal className="section-heading centered">
-        <p className="eyebrow">Nossas memórias</p>
-        <h2>Capítulos de uma história</h2>
-        <p>Em breve, nossas fotografias favoritas estarão reunidas aqui.</p>
-      </Reveal>
-      <Reveal className="photo-grid">
-        <img
-          className="gallery-photo"
-          src={galleryPhotoOne}
-          alt="Fotografia do casal"
-          loading="lazy"
-          decoding="async"
-        />
-        <img
-          className="gallery-photo"
-          src={galleryPhotoTwo}
-          alt="Fotografia do casal"
-          loading="lazy"
-          decoding="async"
-        />
-      </Reveal>
+    <section className="gallery section story-gallery">
+      <div className="story-magic" aria-hidden="true">
+        {stars.map((star, index) => (
+          <span
+            key={index}
+            style={{
+              left: star.left,
+              top: star.top,
+              animationDelay: star.delay,
+              animationDuration: star.duration,
+            }}
+          />
+        ))}
+      </div>
+      <motion.div
+        className="section-heading centered story-heading"
+        initial={reduced ? false : { opacity: 0, y: 45, filter: "blur(12px)" }}
+        whileInView={reduced ? undefined : { opacity: 1, y: 0, filter: "blur(0px)" }}
+        viewport={{ once: true, amount: .55 }}
+        transition={{ duration: 1.15, ease: [0.16, 1, 0.3, 1] }}
+      >
+        <motion.p
+          className="eyebrow story-eyebrow"
+          initial={reduced ? false : { opacity: 0, letterSpacing: "0.08em" }}
+          whileInView={reduced ? undefined : { opacity: 1, letterSpacing: ".32em" }}
+          viewport={{ once: true, amount: .55 }}
+          transition={{ duration: 1, delay: .15 }}
+        >
+          Nossas memórias
+        </motion.p>
+        <h2>
+          <motion.span
+            initial={reduced ? false : { opacity: 0, y: "100%", rotate: 4 }}
+            whileInView={reduced ? undefined : { opacity: 1, y: 0, rotate: 0 }}
+            viewport={{ once: true, amount: .55 }}
+            transition={{ duration: 1.1, delay: .25, ease: [0.16, 1, 0.3, 1] }}
+          >
+            Capítulos de uma história
+          </motion.span>
+        </h2>
+        <p>Momentos que guardam o começo, o caminho e a promessa.</p>
+      </motion.div>
+
+      <motion.div
+        className="photo-grid story-photo-grid"
+        initial={reduced ? false : { opacity: 0 }}
+        whileInView={reduced ? undefined : { opacity: 1 }}
+        viewport={{ once: true, amount: .18 }}
+        transition={{ duration: .8 }}
+      >
+        <motion.figure
+          className="story-photo story-photo--left"
+          initial={reduced ? false : { opacity: 0, x: -150, y: 100, rotate: -9, scale: .82 }}
+          whileInView={reduced ? undefined : { opacity: 1, x: 0, y: 0, rotate: -2, scale: 1 }}
+          viewport={{ once: true, amount: .25 }}
+          transition={{ duration: 1.35, delay: .2, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <motion.img
+            className="gallery-photo"
+            src={galleryPhotoOne}
+            alt="Fotografia do casal"
+            loading="lazy"
+            decoding="async"
+            whileInView={reduced ? undefined : { scale: [1.18, 1] }}
+            viewport={{ once: true, amount: .25 }}
+            transition={{ duration: 1.8, delay: .15 }}
+          />
+          <span className="story-photo__shine" aria-hidden="true" />
+          <figcaption>Onde tudo começou</figcaption>
+        </motion.figure>
+        <motion.figure
+          className="story-photo story-photo--right"
+          initial={reduced ? false : { opacity: 0, x: 150, y: 100, rotate: 9, scale: .82 }}
+          whileInView={reduced ? undefined : { opacity: 1, x: 0, y: 0, rotate: 2, scale: 1 }}
+          viewport={{ once: true, amount: .25 }}
+          transition={{ duration: 1.35, delay: .38, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <motion.img
+            className="gallery-photo"
+            src={galleryPhotoTwo}
+            alt="Fotografia do casal"
+            loading="lazy"
+            decoding="async"
+            whileInView={reduced ? undefined : { scale: [1.18, 1] }}
+            viewport={{ once: true, amount: .25 }}
+            transition={{ duration: 1.8, delay: .32 }}
+          />
+          <span className="story-photo__shine" aria-hidden="true" />
+          <figcaption>O amor que nos trouxe até aqui</figcaption>
+        </motion.figure>
+      </motion.div>
     </section>
   )
 }
