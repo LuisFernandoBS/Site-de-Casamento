@@ -167,6 +167,9 @@ p { color: var(--brown); line-height: 1.8; }
 .gift-card-qr-result img { width: min(180px, 70%); }
 footer { min-height: 190px; display: flex; flex-direction: column; align-items: center; justify-content: center; background: #342d25; color: var(--ivory); }
 footer .ornament { margin: .5rem 0; } footer p { margin: .3rem; color: #cfc4b2; font-family: var(--serif); font-size: 1rem; } footer strong { color: white; font-family: var(--serif); font-weight: 400; letter-spacing: .15em; } footer small { margin-top: .5rem; color: #cfc4b2; font-size: .45rem; }
+.admin-access-link { margin-top: 1rem; color: rgba(250,248,243,.45); font-size: .45rem; letter-spacing: .12em; text-decoration: none; text-transform: uppercase; }
+.admin-access-link:hover { color: var(--gold); }
+.admin-loading { min-height: 100svh; display: grid; place-content: center; justify-items: center; gap: .8rem; background: var(--ivory); color: var(--brown); font-size: .65rem; letter-spacing: .08em; text-transform: uppercase; }
 footer div:has(svg) { display: flex; align-items: center; gap: .2rem; color: var(--gold); }
 .spin { animation: spin 1s linear infinite; } @keyframes spin { to { transform: rotate(360deg); } }
 

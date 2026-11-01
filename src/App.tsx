@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useAdminAuth } from "@/contexts/AdminAuthContext"
 import { AdminAuthProvider } from "@/contexts/AdminAuthContext"
-import { AdminLogin } from "@/pages/AdminLogin"
+import AdminLogin from "@/pages/AdminLogin"
 import { AdminPage } from "@/pages/AdminPage"
 import {
   AlertCircle,
@@ -693,11 +693,29 @@ function Footer() {
       </div>
       <strong>15 · 12 · 2026</strong>
       <small>O nosso para sempre começa aqui</small>
+      <a className="admin-access-link" href="/admin" aria-label="Acessar painel administrativo">
+        Administração
+      </a>
     </footer>
   )
 }
 
-export default function App() {
+function AdminApp() {
+  const { user, loading } = useAdminAuth()
+
+  if (loading) {
+    return (
+      <div className="admin-loading">
+        <LoaderCircle className="spin" size={28} />
+        <span>Carregando painel...</span>
+      </div>
+    )
+  }
+
+  return user ? <AdminPage /> : <AdminLogin />
+}
+
+function WeddingSite() {
   return (
     <>
       <Header />
@@ -713,5 +731,17 @@ export default function App() {
       </main>
       <Footer />
     </>
+  )
+}
+
+export default function App() {
+  const isAdminRoute = window.location.pathname.replace(/\/$/, "") === "/admin"
+
+  if (!isAdminRoute) return <WeddingSite />
+
+  return (
+    <AdminAuthProvider>
+      <AdminApp />
+    </AdminAuthProvider>
   )
 }
