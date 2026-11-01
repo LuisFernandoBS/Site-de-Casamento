@@ -374,42 +374,13 @@ function Letters() {
             transition={{ duration: 1.25, delay: i * 0.18, ease: [0.16, 1, 0.3, 1] }}
           >
             <span className="letter-glow" aria-hidden="true" />
-            <motion.b
-              initial={reduced ? false : { opacity: 0, scale: 0 }}
-              whileInView={reduced ? undefined : { opacity: 1, scale: 1 }}
-              viewport={{ once: true, amount: 0.5 }}
-              transition={{ delay: .35 + i * .18, type: "spring", stiffness: 180 }}
-            >0{i + 1}</motion.b>
-            <motion.span
-              className="letter-heart"
-              initial={reduced ? false : { opacity: 0, scale: 0, rotate: -35 }}
-              whileInView={reduced ? undefined : { opacity: 1, scale: [0, 1.45, 1], rotate: 0 }}
-              viewport={{ once: true, amount: 0.5 }}
-              transition={{ delay: .45 + i * .18, duration: .9 }}
-            >
+            <b>0{i + 1}</b>
+            <span className="letter-heart">
               <Heart size={18} />
-            </motion.span>
-            <motion.h3
-              initial={reduced ? false : { opacity: 0, y: 24, letterSpacing: "0.08em" }}
-              whileInView={reduced ? undefined : { opacity: 1, y: 0, letterSpacing: "normal" }}
-              viewport={{ once: true, amount: 0.5 }}
-              transition={{ duration: .8, delay: .55 + i * .18 }}
-            >{letter.title}</motion.h3>
-            {letter.paragraphs.map((p, n) => (
-              <motion.p
-                key={n}
-                initial={reduced ? false : { opacity: 0, y: 18, clipPath: "inset(0 0 100% 0)" }}
-                whileInView={reduced ? undefined : { opacity: 1, y: 0, clipPath: "inset(0 0 0% 0)" }}
-                viewport={{ once: true, amount: 0.4 }}
-                transition={{ duration: .75, delay: .72 + i * .18 + n * .16 }}
-              >{p}</motion.p>
-            ))}
-            <motion.em
-              initial={reduced ? false : { opacity: 0, x: -20 }}
-              whileInView={reduced ? undefined : { opacity: 1, x: 0 }}
-              viewport={{ once: true, amount: 0.5 }}
-              transition={{ duration: .7, delay: 1.1 + i * .18 }}
-            >Com todo o meu amor</motion.em>
+            </span>
+            <h3>{letter.title}</h3>
+            {letter.paragraphs.map((p, n) => <p key={n}>{p}</p>)}
+            <em>Com todo o meu amor</em>
           </motion.article>
         ))}
       </div>
