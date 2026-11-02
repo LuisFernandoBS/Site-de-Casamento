@@ -151,6 +151,8 @@ p { color: var(--brown); line-height: 1.8; }
 .event-card .button { width: 100%; justify-content: center; }
 .attire { grid-column: 1/-1; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2rem; align-items: end; padding-top: 2rem; }
 .attire h3 { margin: 0; font-size: 2rem; }
+.attire-white-warning { margin-top: 1rem !important; padding: .9rem 1rem; border-left: 3px solid #b36d6d; background: rgba(179,109,109,.09); color: #704040 !important; font-family: var(--sans) !important; font-size: .68rem !important; font-weight: 700 !important; letter-spacing: .035em; line-height: 1.55; text-transform: uppercase; }
+.attire-white-warning strong { color: #8d3f3f; }
 .attire-row b { font-family: var(--serif); font-size: .85rem; font-weight: 400; }
 .swatches { display: flex; gap: 1rem; margin-top: .7rem; }
 .swatches span { text-align: center; }
@@ -175,6 +177,17 @@ p { color: var(--brown); line-height: 1.8; }
 .gift-options { display: grid; grid-template-columns: repeat(3, 1fr); gap: .45rem; }
 .gift-options button { min-height: 42px; border: 1px solid var(--champagne); background: var(--paper); color: var(--ink); font-family: var(--serif); font-size: .86rem; cursor: pointer; }
 .gift-options button.active { border-color: var(--gold); background: #f5efdf; color: var(--brown); }
+.pix-copy-card { margin-bottom: .75rem; display: grid; grid-template-columns: minmax(0,1fr) auto; align-items: center; gap: 1rem; padding: .85rem; border: 1px solid rgba(185,154,95,.55); background: rgba(255,253,248,.88); transition: border-color .25s ease, background .25s ease, transform .25s ease; }
+.pix-copy-card.copied { border-color: #78916f; background: #f2f6ef; animation: pixCopied .35s ease both; }
+.pix-copy-card > div { min-width: 0; text-align: left; }
+.pix-copy-card .eyebrow { display: block; margin-bottom: .25rem; font-size: .45rem; }
+.pix-copy-card strong { display: block; overflow-wrap: anywhere; color: var(--ink); font-family: var(--serif); font-size: .82rem; font-weight: 400; }
+.pix-copy-card button { min-width: 118px; min-height: 38px; display: inline-flex; align-items: center; justify-content: center; gap: .45rem; border: 0; background: var(--brown); color: white; font-size: .48rem; letter-spacing: .06em; text-transform: uppercase; cursor: pointer; }
+.pix-copy-card.copied button { background: #78916f; }
+.pix-copy-check { opacity: 0; transform: scale(.4); }
+.pix-copy-check.visible { opacity: 1; transform: scale(1); animation: pixCheck .38s cubic-bezier(.16,1,.3,1) both; }
+@keyframes pixCopied { 0% { transform: scale(.985); } 60% { transform: scale(1.012); } 100% { transform: scale(1); } }
+@keyframes pixCheck { 0% { opacity: 0; transform: scale(.35) rotate(-18deg); } 100% { opacity: 1; transform: scale(1) rotate(0); } }
 .gift-qr-result { margin-top: 1rem; display: grid; justify-items: center; gap: .5rem; }
 .gift-qr-result img { width: min(220px, 75%); height: auto; background: white; }
 .gift-qr-result span { color: var(--gold); font-family: var(--serif); font-size: .95rem; }
@@ -256,6 +269,9 @@ footer div:has(svg) { display: flex; align-items: center; gap: .2rem; color: var
   .attire { grid-template-columns: 1fr; }.rsvp { gap: 2rem; }
   .gift-options, .gift-card-options .gift-options { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .gift-card-options { width: 100%; min-width: 0; }
+  .pix-copy-card { grid-template-columns: 1fr; gap: .65rem; }
+  .pix-copy-card > div { text-align: center; }
+  .pix-copy-card button { width: 100%; }
   .gift-card-options .gift-options button { min-width: 0; padding-inline: .35rem; font-size: .78rem; }
   .gift-card { grid-template-columns: 1fr; text-align: center; }
   .gift-card-icon { margin-top: 2rem; }

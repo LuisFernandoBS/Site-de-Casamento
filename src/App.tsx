@@ -10,6 +10,7 @@ import {
   Check,
   Church,
   Clock3,
+  Copy,
   ExternalLink,
   Gift,
   Heart,
@@ -533,7 +534,8 @@ function Event() {
         <div>
           <p className="eyebrow">Dress code</p>
           <h3>Uma paleta para celebrar</h3>
-          <p>Reservamos algumas cores especiais para o nosso cortejo. Por favor, não utilize branco neste dia tão especial.</p>
+          <p>Reservamos algumas cores especiais para o nosso cortejo.</p>
+          <p className="attire-white-warning"><strong>Atenção:</strong> não utilize branco neste dia tão especial.</p>
         </div>
         <div className="attire-row">
           <b>Madrinhas</b>
@@ -573,6 +575,42 @@ const initialForm: FormData = {
   guestCount: 1,
   dietaryRestrictions: "",
   message: "",
+}
+
+function PixCopyButton() {
+  const [copied, setCopied] = useState(false)
+  const pixKey = "pabloemilena1512@gmail.com"
+
+  async function copyPixKey() {
+    try {
+      await navigator.clipboard.writeText(pixKey)
+      setCopied(true)
+      window.setTimeout(() => setCopied(false), 1800)
+    } catch {
+      const input = document.createElement("textarea")
+      input.value = pixKey
+      document.body.appendChild(input)
+      input.select()
+      document.execCommand("copy")
+      input.remove()
+      setCopied(true)
+      window.setTimeout(() => setCopied(false), 1800)
+    }
+  }
+
+  return (
+    <div className={`pix-copy-card${copied ? " copied" : ""}`}>
+      <div>
+        <span className="eyebrow">Pix para presente</span>
+        <strong>{pixKey}</strong>
+      </div>
+      <button type="button" onClick={copyPixKey} aria-label="Copiar chave Pix">
+        <span>{copied ? "Chave copiada" : "Copiar chave"}</span>
+        <Check className={copied ? "pix-copy-check visible" : "pix-copy-check"} size={17} />
+        {!copied && <Copy size={17} />}
+      </button>
+    </div>
+  )
 }
 
 const giftOptions = [
@@ -718,6 +756,7 @@ function Rsvp() {
                     <h3>Enviar um presente para os noivos</h3>
                     <p>Escolha um valor ou não enviar presente. Essa etapa é opcional.</p>
                   </div>
+                  <PixCopyButton />
                   <div className="gift-options">
                     {giftOptions.map((option) => (
                       <button
@@ -814,6 +853,7 @@ function Gifts() {
 
           {showGiftOptions && (
             <div className="gift-card-options">
+              <PixCopyButton />
               <div className="gift-options">
                 {giftOptions.map((option) => (
                   <button
