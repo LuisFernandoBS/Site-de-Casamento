@@ -186,7 +186,7 @@ p { color: var(--brown); line-height: 1.8; }
 .pix-copy-card > div { min-width: 0; text-align: left; }
 .pix-copy-card .eyebrow { display: block; margin-bottom: .25rem; font-size: .45rem; }
 .pix-copy-card strong { display: block; overflow-wrap: anywhere; color: var(--ink); font-family: var(--serif); font-size: .82rem; font-weight: 400; }
-.pix-copy-card button { min-width: 118px; min-height: 38px; display: inline-flex; align-items: center; justify-content: center; gap: .45rem; border: 0; background: var(--brown); color: white; font-size: .48rem; letter-spacing: .06em; text-transform: uppercase; cursor: pointer; }
+.pix-copy-card button { width: max-content; min-width: 98px; min-height: 34px; padding: .55rem .8rem; display: inline-flex; align-items: center; justify-content: center; gap: .35rem; border: 0; background: var(--brown); color: white; font-size: .46rem; letter-spacing: .04em; text-transform: uppercase; white-space: nowrap; cursor: pointer; }
 .pix-copy-card.copied button { background: #78916f; }
 .pix-copy-check { opacity: 0; transform: scale(.4); }
 .pix-copy-check.visible { opacity: 1; transform: scale(1); animation: pixCheck .38s cubic-bezier(.16,1,.3,1) both; }
@@ -421,6 +421,7 @@ section.grid .text-3xl { margin: 0; font-family: var(--serif); font-size: 2.6rem
 .admin-table table { width: 100%; border-collapse: collapse; }
 .admin-table th { padding: 1rem 1rem; border-bottom: 1px solid #e7e0d4; background: #faf8f4; color: var(--brown); font-size: .48rem; font-weight: 700; letter-spacing: .07em; text-align: left; text-transform: uppercase; white-space: nowrap; }
 .admin-table td { height: 58px; padding: .75rem 1rem; border-bottom: 1px solid #eee8dd; font-size: .68rem; vertical-align: middle; }
+.admin-table-message { max-width: 280px; color: var(--brown); line-height: 1.45; white-space: normal; overflow-wrap: anywhere; }
 .admin-table tbody tr { transition: background .18s ease; }
 .admin-table tbody tr:hover { background: #fcfaf5; }
 .admin-table .num { text-align: center; }
