@@ -86,16 +86,15 @@ export function GuestDetailModal({
                 }
               />
             </label>
-            <label className="admin-field">
-              <span>Restrições alimentares</span>
-              <input
-                value={draft.dietary_restrictions ?? ""}
+            <label className="admin-field admin-field--full">
+              <span>Mensagem para os noivos</span>
+              <textarea
+                rows={3}
+                value={draft.message ?? ""}
                 onChange={(e) =>
-                  setDraft({
-                    ...draft,
-                    dietary_restrictions: e.target.value || null,
-                  })
+                  setDraft({ ...draft, message: e.target.value || null })
                 }
+                placeholder="Deixe uma palavra de carinho"
               />
             </label>
           </div>

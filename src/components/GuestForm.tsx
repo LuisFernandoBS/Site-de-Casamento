@@ -96,12 +96,13 @@ export function GuestForm({
               placeholder="Como devemos chamá-lo?"
             />
           </label>
-          <label className="admin-field">
-            <span>Restrições alimentares</span>
-            <input
-              value={form.dietary_restrictions}
-              onChange={(e) => update("dietary_restrictions", e.target.value)}
-              placeholder="Vegetariano, alérgico, etc."
+          <label className="admin-field admin-field--full">
+            <span>Mensagem para os noivos</span>
+            <textarea
+              rows={3}
+              value={form.message}
+              onChange={(e) => update("message", e.target.value)}
+              placeholder="Deixe uma palavra de carinho"
             />
           </label>
           <fieldset className="admin-field admin-field--full">
