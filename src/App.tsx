@@ -174,41 +174,29 @@ function Hero() {
       </div>
       <div className="hero-copy">
         <motion.p
-          className="eyebrow hero-stagger"
-          initial={{ opacity: 0, y: 18, letterSpacing: "0.12em" }}
-          animate={{ opacity: 1, y: 0, letterSpacing: "0.32em" }}
-          transition={{ duration: 0.8, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}
-        >
-          Com a graça de Deus
-        </motion.p>
-        <motion.h1
-          className="hero-stagger"
-          initial={{ opacity: 0, y: 54, scale: 0.88, filter: "blur(18px)" }}
-          animate={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
-          transition={{ duration: 1.25, delay: 0.18, ease: [0.16, 1, 0.3, 1] }}
-        >
-          Milena Gomes <em>& Pablo Charles</em>
-        </motion.h1>
-        <motion.div
-          className="hero-date hero-stagger"
-          initial={{ opacity: 0, y: 24, scale: 0.96 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ duration: 0.85, delay: 0.48, ease: [0.16, 1, 0.3, 1] }}
-        >
-          <span>15</span>
-          <div>
-            <strong>Dezembro</strong>
-            <small>2026 · às 15h</small>
-          </div>
-        </motion.div>
-        <motion.p
-          className="hero-quote hero-stagger"
+          className="hero-scripture hero-stagger"
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.85, delay: 0.68, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.8, delay: 0.05 }}
         >
-          “Acima de tudo, porém, revistam-se do amor, que é o elo perfeito.”
+          “Para que todos vejam, e saibam, e considerem, e juntamente entendam que a mão do Senhor fez isto.”
+          <small>Isaías 41:20</small>
         </motion.p>
+        <motion.div
+          className="hero-invitation hero-stagger"
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.85, delay: 0.18 }}
+        >
+          <p className="hero-blessing">Com a bênção de Deus e seus pais</p>
+          <h1>Pablo <span>&</span> Milena</h1>
+          <p className="hero-couple-intro">Convidam para seu casamento</p>
+          <p className="hero-will-take-place">A realizar-se em</p>
+          <div className="hero-invitation-date">
+            <span>15</span><i>·</i><span>12</span><i>·</i><span>26</span>
+          </div>
+          <p className="hero-time">Terça-feira · 15h00</p>
+        </motion.div>
         <motion.a
           className="scroll-cue hero-stagger"
           href="#boas-vindas"
@@ -236,9 +224,7 @@ function Hero() {
           fetchPriority="high"
           style={{ y: imageY, scale: reduced ? 1 : 1.07 }}
         />
-        <p className="photo-caption">
-          Um encontro escrito por Deus
-        </p>
+        <div className="hero-photo-fade" aria-hidden="true" />
       </motion.div>
     </section>
   )
