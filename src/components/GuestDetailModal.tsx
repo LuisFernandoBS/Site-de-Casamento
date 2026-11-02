@@ -87,46 +87,6 @@ export function GuestDetailModal({
               />
             </label>
             <label className="admin-field">
-              <span>E-mail</span>
-              <input
-                type="email"
-                value={draft.email ?? ""}
-                onChange={(e) =>
-                  setDraft({ ...draft, email: e.target.value || null })
-                }
-              />
-            </label>
-            <label className="admin-field">
-              <span>Telefone</span>
-              <input
-                value={draft.phone ?? ""}
-                onChange={(e) =>
-                  setDraft({ ...draft, phone: e.target.value || null })
-                }
-              />
-            </label>
-            <label className="admin-field">
-              <span>Pessoas</span>
-              <input
-                type="number"
-                min="1"
-                max="20"
-                value={draft.guest_count}
-                onChange={(e) =>
-                  setDraft({ ...draft, guest_count: Number(e.target.value) || 1 })
-                }
-              />
-            </label>
-            <label className="admin-field">
-              <span>Acompanhante</span>
-              <input
-                value={draft.companion_name ?? ""}
-                onChange={(e) =>
-                  setDraft({ ...draft, companion_name: e.target.value || null })
-                }
-              />
-            </label>
-            <label className="admin-field">
               <span>Restrições alimentares</span>
               <input
                 value={draft.dietary_restrictions ?? ""}
@@ -139,17 +99,6 @@ export function GuestDetailModal({
               />
             </label>
           </div>
-
-          <label className="admin-field admin-field--full">
-            <span>Mensagem enviada</span>
-            <textarea
-              rows={3}
-              value={draft.message ?? ""}
-              onChange={(e) =>
-                setDraft({ ...draft, message: e.target.value || null })
-              }
-            />
-          </label>
 
           <fieldset className="admin-field admin-field--full">
             <legend>Status da confirmação</legend>

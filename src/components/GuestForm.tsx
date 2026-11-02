@@ -46,10 +46,6 @@ export function GuestForm({
       setError("Nome completo é obrigatório (mínimo 3 letras).")
       return
     }
-    if (form.guest_count < 1) {
-      setError("Quantidade de pessoas deve ser no mínimo 1.")
-      return
-    }
     await onSubmit({
       full_name: form.full_name.trim(),
       email: form.email.trim() || null,
@@ -101,55 +97,11 @@ export function GuestForm({
             />
           </label>
           <label className="admin-field">
-            <span>E-mail</span>
-            <input
-              type="email"
-              value={form.email}
-              onChange={(e) => update("email", e.target.value)}
-              placeholder="opcional"
-            />
-          </label>
-          <label className="admin-field">
-            <span>Telefone</span>
-            <input
-              value={form.phone}
-              onChange={(e) => update("phone", e.target.value)}
-              placeholder="opcional"
-            />
-          </label>
-          <label className="admin-field">
-            <span>Quantidade de pessoas *</span>
-            <input
-              type="number"
-              min="1"
-              max="20"
-              value={form.guest_count}
-              onChange={(e) => update("guest_count", Number(e.target.value) || 1)}
-            />
-          </label>
-          <label className="admin-field">
-            <span>Acompanhante</span>
-            <input
-              value={form.companion_name}
-              onChange={(e) => update("companion_name", e.target.value)}
-              placeholder="Nome do acompanhante"
-            />
-          </label>
-          <label className="admin-field">
             <span>Restrições alimentares</span>
             <input
               value={form.dietary_restrictions}
               onChange={(e) => update("dietary_restrictions", e.target.value)}
               placeholder="Vegetariano, alérgico, etc."
-            />
-          </label>
-          <label className="admin-field admin-field--full">
-            <span>Mensagem para os noivos</span>
-            <textarea
-              rows={3}
-              value={form.message}
-              onChange={(e) => update("message", e.target.value)}
-              placeholder="Deixe uma palavra de carinho (opcional)"
             />
           </label>
           <fieldset className="admin-field admin-field--full">
