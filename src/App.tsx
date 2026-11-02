@@ -186,7 +186,7 @@ function Hero() {
           animate={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
           transition={{ duration: 1.25, delay: 0.18, ease: [0.16, 1, 0.3, 1] }}
         >
-          O nosso <em>para sempre</em>
+          Milena Gomes <em>& Pablo Charles</em>
         </motion.h1>
         <motion.div
           className="hero-date hero-stagger"
@@ -533,7 +533,7 @@ function Event() {
         <div>
           <p className="eyebrow">Dress code</p>
           <h3>Uma paleta para celebrar</h3>
-          <p>Reservamos algumas cores especiais para o nosso cortejo.</p>
+          <p>Reservamos algumas cores especiais para o nosso cortejo. Por favor, não utilize branco neste dia tão especial.</p>
         </div>
         <div className="attire-row">
           <b>Madrinhas</b>
@@ -572,6 +572,7 @@ const initialForm: FormData = {
   attending: true,
   guestCount: 1,
   dietaryRestrictions: "",
+  message: "",
 }
 
 const giftOptions = [
@@ -701,13 +702,12 @@ function Rsvp() {
               </fieldset>
               {form.attending && (
                 <label>
-                  <span>Restrições alimentares</span>
-                  <input
-                    value={form.dietaryRestrictions}
-                    onChange={(e) =>
-                      update("dietaryRestrictions", e.target.value)
-                    }
-                    placeholder="Conte-nos para cuidarmos de você"
+                  <span>Mensagem para os noivos</span>
+                  <textarea
+                    rows={3}
+                    value={form.message}
+                    onChange={(e) => update("message", e.target.value)}
+                    placeholder="Deixe uma palavra de carinho"
                   />
                 </label>
               )}
@@ -851,7 +851,7 @@ function Footer() {
   return (
     <footer>
       <Ornament />
-      <p>Feito com amor, fé e a bênção de Deus.</p>
+      <p>Milena Gomes &amp; Pablo Charles</p>
       <div>
         <Heart size={15} />
         <InfinityIcon size={25} />
