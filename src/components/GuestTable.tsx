@@ -180,6 +180,7 @@ export function GuestTable({
             <tr>
               <th>Convidado</th>
               <th>Status</th>
+              <th>Mensagem para os noivos</th>
               <th className="num">Confirmado em</th>
               <th className="admin-th-actions">Ações</th>
             </tr>
@@ -187,7 +188,7 @@ export function GuestTable({
           <tbody>
             {filtered.length === 0 ? (
               <tr>
-                <td colSpan={4} className="admin-table__empty">
+                <td colSpan={5} className="admin-table__empty">
                   Nenhum convidado encontrado.
                 </td>
               </tr>
@@ -204,6 +205,9 @@ export function GuestTable({
                   </td>
                   <td>
                     <StatusBadge status={g.status} />
+                  </td>
+                  <td className="admin-table-message" title={g.message ?? undefined}>
+                    {g.message?.trim() || "—"}
                   </td>
                   <td className="num admin-muted">
                     {g.confirmed_at
