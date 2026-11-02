@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { BarChart3, CalendarDays, DoorOpen, Heart, LogOut, Menu, Users } from "lucide-react"
+import { BarChart3, CalendarDays, DoorOpen, Heart, LogOut, Menu, ShieldCheck, Users } from "lucide-react"
 import { useAdminAuth } from "@/contexts/AdminAuthContext"
 
 type Section = "dashboard" | "guests"
@@ -57,12 +57,12 @@ export function AdminLayout({
 
         <div className="admin-sidebar__foot">
           <div className="admin-sidebar__user">
-            <span className="admin-avatar">
-              {(user?.email ?? "?").charAt(0).toUpperCase()}
+            <span className="admin-avatar" aria-hidden="true">
+              <ShieldCheck size={17} />
             </span>
             <div>
               <p className="admin-sidebar__user-name">
-                {user?.email ?? "Administrador"}
+                Administrador
               </p>
               <small>Conectado</small>
             </div>
