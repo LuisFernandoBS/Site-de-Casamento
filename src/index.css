@@ -254,10 +254,12 @@ footer div:has(svg) { display: flex; align-items: center; gap: .2rem; color: var
   .story-photo figcaption { font-size: .68rem; }
   .event-main { grid-template-columns: 1fr; }.event-main h2, .rsvp h2 { font-size: 3rem; }
   .attire { grid-template-columns: 1fr; }.rsvp { gap: 2rem; }
-  .gift-options { grid-template-columns: repeat(2, 1fr); }
+  .gift-options, .gift-card-options .gift-options { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .gift-card-options { width: 100%; min-width: 0; }
+  .gift-card-options .gift-options button { min-width: 0; padding-inline: .35rem; font-size: .78rem; }
   .gift-card { grid-template-columns: 1fr; text-align: center; }
   .gift-card-icon { margin-top: 2rem; }
-  .gift-card-copy { padding: 2rem 1.5rem; }
+  .gift-card-copy { min-width: 0; padding: 2rem 1.5rem; }
   .gift-card-copy h3 { margin-left: auto; margin-right: auto; }
   .gift-confirm-link { margin: 0 auto; }
 }
@@ -470,6 +472,10 @@ section.grid .text-3xl { margin: 0; font-family: var(--serif); font-size: 2.6rem
   .admin-table table { min-width: 780px; }
 }
 @media (max-width: 520px) {
+  .gifts.section { padding-inline: 1rem; }
+  .gift-card-copy { padding-inline: 1rem; }
+  .gift-card-options .gift-options { gap: .35rem; }
+  .gift-card-options .gift-options button { font-size: .72rem; }
   .admin-modal__backdrop { align-items: start; padding: .75rem; }
   .admin-modal { max-height: calc(100svh - 1.5rem); }
   .admin-modal__header { min-height: 88px; padding: 1rem; }
