@@ -99,6 +99,11 @@ export async function createGuest(input: {
   status?: Guest["status"]
   confirmed_at?: string | null
 }): Promise<Guest> {
+  const { data: sessionData } = await supabase.auth.getSession()
+  if (!sessionData.session) {
+    throw new Error("Sua sessão expirou. Entre novamente no painel administrativo.")
+  }
+
   const { data, error } = await supabase
     .from("guests")
     .insert({
@@ -116,7 +121,12 @@ export async function createGuest(input: {
     .select("*")
     .single()
 
-  if (error || !data) throw new Error(error?.message ?? "Não foi possível cadastrar")
+  if (error || !data) {
+    if (error?.code === "42501" || error?.message?.toLowerCase().includes("row-level security")) {
+      throw new Error("Você não tem permissão para cadastrar convidados. Entre novamente ou confira as políticas administrativas do Supabase.")
+    }
+    throw new Error(error?.message ?? "Não foi possível cadastrar")
+  }
   return mapRow(data as GuestRow)
 }
 
