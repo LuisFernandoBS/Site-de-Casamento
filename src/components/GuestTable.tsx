@@ -1,5 +1,7 @@
 import { useEffect, useMemo, useState } from "react"
 import { ChevronDown, Download, Edit, Plus, Search, Trash2, Users, UserCheck, UserX } from "lucide-react"
+import jsPDF from "jspdf"
+import autoTable from "jspdf-autotable"
 import type { Guest } from "@/lib/types"
 import { exportGuestsToCsv, statusLabel } from "@/services/guests"
 import { StatusBadge } from "./StatusBadge"
@@ -32,6 +34,39 @@ export function GuestTable({
     a.download = name
     a.click()
     URL.revokeObjectURL(url)
+  }
+
+  function exportPdf(list: Guest[], name: string) {
+    const pdf = new jsPDF({ orientation: "portrait", unit: "mm", format: "a4" })
+    const pageWidth = pdf.internal.pageSize.getWidth()
+
+    pdf.setFillColor(250, 248, 243)
+    pdf.rect(0, 0, pageWidth, 42, "F")
+    pdf.setTextColor(185, 154, 95)
+    pdf.setFont("helvetica", "bold")
+    pdf.setFontSize(16)
+    pdf.text("Lista de convidados", pageWidth / 2, 18, { align: "center" })
+    pdf.setTextColor(120, 106, 79)
+    pdf.setFont("helvetica", "normal")
+    pdf.setFontSize(9)
+    pdf.text(`${list.length} convidado${list.length === 1 ? "" : "s"} - gerado em ${new Date().toLocaleDateString("pt-BR")}`, pageWidth / 2, 27, { align: "center" })
+
+    autoTable(pdf, {
+      startY: 48,
+      head: [["Convidado", "Status", "Confirmado em"]],
+      body: list.map((guest) => [
+        guest.full_name,
+        statusLabel(guest.status),
+        guest.confirmed_at ? new Date(guest.confirmed_at).toLocaleDateString("pt-BR") : "—",
+      ]),
+      styles: { font: "helvetica", fontSize: 9, textColor: [51, 46, 39], cellPadding: 3 },
+      headStyles: { fillColor: [185, 154, 95], textColor: [255, 255, 255], fontStyle: "bold" },
+      alternateRowStyles: { fillColor: [250, 248, 243] },
+      columnStyles: { 0: { cellWidth: "auto" }, 1: { cellWidth: 42 }, 2: { cellWidth: 38 } },
+      margin: { left: 14, right: 14 },
+    })
+
+    pdf.save(`${name}.pdf`)
   }
 
   const exportOptions: { label: string; list: Guest[] }[] = [
@@ -97,7 +132,7 @@ export function GuestTable({
           <input
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Pesquisar por nome, e-mail ou acompanhante"
+            placeholder="Pesquisar por nome"
             aria-label="Pesquisar convidados"
           />
         </div>
@@ -119,13 +154,21 @@ export function GuestTable({
           </button>
           <div className="admin-export__menu" role="listbox">
             {exportOptions.map((opt) => (
-              <button
-                key={opt.label}
-                role="option"
-                onClick={() => exportCsv(opt.list, `convidados-${opt.label.split(" ")[0].toLowerCase()}.csv`)}
-              >
-                {opt.label}
-              </button>
+              <div className="admin-export__group" key={opt.label} role="group" aria-label={opt.label}>
+                <strong>{opt.label}</strong>
+                <button
+                  role="option"
+                  onClick={() => exportCsv(opt.list, `convidados-${opt.label.split(" ")[0].toLowerCase()}.csv`)}
+                >
+                  Baixar CSV
+                </button>
+                <button
+                  role="option"
+                  onClick={() => exportPdf(opt.list, `convidados-${opt.label.split(" ")[0].toLowerCase()}`)}
+                >
+                  Baixar PDF
+                </button>
+              </div>
             ))}
           </div>
         </div>

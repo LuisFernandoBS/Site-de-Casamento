@@ -31,7 +31,7 @@ export function AdminLayout({
             <Heart size={20} />
           </span>
           <div>
-            <p className="admin-sidebar__eyebrow">Painel dos noivos</p>
+            <p className="admin-sidebar__eyebrow">Painel do casal</p>
             <strong>Administração</strong>
           </div>
         </div>

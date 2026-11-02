@@ -47,7 +47,7 @@ export default function AdminLogin() {
               <Heart size={22} />
             </span>
             <div>
-              <p className="admin-login__eyebrow">Área dos noivos</p>
+              <p className="admin-login__eyebrow">Área administrativa</p>
               <h1>Painel administrativo</h1>
             </div>
           </div>

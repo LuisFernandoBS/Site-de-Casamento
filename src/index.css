@@ -70,7 +70,7 @@ p { color: var(--brown); line-height: 1.8; }
 .hero-photo-orbit { position: absolute; width: 42%; aspect-ratio: 1; right: -22%; top: -18%; z-index: 2; border: 1px solid rgba(185,154,95,.58); border-radius: 50%; animation: photoOrbit 14s linear infinite; pointer-events: none; }
 .hero-photo-orbit::before { content: ""; position: absolute; width: 7px; aspect-ratio: 1; left: 2px; top: 48%; border-radius: 50%; background: #fff; box-shadow: 0 0 10px rgba(185,154,95,.95); }
 .hero-photo { width: 100%; height: 100%; object-fit: cover; object-position: center 35%; will-change: transform; filter: saturate(.92) contrast(.98); }
-.photo-caption { position: absolute; right: -.3rem; bottom: -1.1rem; z-index: 2; min-width: 140px; margin: 0; padding: .8rem 1.3rem; background: var(--paper); color: var(--ink); font-family: var(--serif); font-size: .72rem; text-align: right; box-shadow: 0 4px 15px rgba(62,56,47,.05); }
+.photo-caption { position: absolute; right: -.3rem; bottom: -0.7rem; z-index: 2; min-width: 140px; margin: 0; padding: .8rem 1.3rem; background: var(--paper); color: var(--ink); font-family: var(--serif); font-size: .72rem; text-align: right; box-shadow: 0 4px 15px rgba(62,56,47,.05); }
 .photo-caption small { display: block; margin-top: .15rem; color: var(--gold); font-family: var(--sans); font-size: .42rem; letter-spacing: .12em; text-transform: uppercase; }
 
 .welcome { position: relative; isolation: isolate; min-height: 690px; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden; background: radial-gradient(circle at 50% 18%, rgba(255,255,255,.96) 0 12%, rgba(255,255,255,.1) 36%, transparent 52%), linear-gradient(145deg, rgba(248,244,233,.72), rgba(255,254,251,.92) 52%, rgba(238,227,207,.5)); }
@@ -196,6 +196,8 @@ p { color: var(--brown); line-height: 1.8; }
 .gifts::before { content: ""; position: absolute; z-index: -1; width: 580px; height: 580px; left: 50%; top: 46%; transform: translate(-50%, -50%); border: 1px solid rgba(185,154,95,.13); border-radius: 50%; box-shadow: 0 0 0 48px rgba(185,154,95,.018), 0 0 0 96px rgba(185,154,95,.012); }
 .gifts::after { content: ""; position: absolute; z-index: -1; width: 220px; height: 220px; right: -100px; bottom: -110px; border-radius: 50%; background: radial-gradient(circle, rgba(185,154,95,.16), transparent 68%); }
 .gifts .section-heading { max-width: 650px; margin-left: auto; margin-right: auto; text-align: center; }
+.gifts .section-heading h2 { line-height: 1.02; margin-bottom: 1.25rem; }
+.gifts .section-heading > p:last-child { margin-top: 0; }
 .gift-card { position: relative; overflow: hidden; width: min(760px,100%); min-height: 250px; margin: 0 auto; display: grid; grid-template-columns: 190px 1fr; align-items: center; text-align: left; border: 1px solid var(--champagne); background: linear-gradient(135deg, var(--paper), #f7f1e4); box-shadow: 0 24px 70px rgba(51,46,39,.08); }
 .gift-card::before { content: ""; position: absolute; width: 220px; height: 220px; right: -90px; top: -110px; border: 1px solid rgba(185,154,95,.28); border-radius: 50%; }
 .gift-card-icon { width: 110px; height: 110px; margin: auto; display: grid; place-items: center; border: 1px solid var(--gold); border-radius: 50%; color: var(--gold); box-shadow: 0 0 0 10px rgba(185,154,95,.08); }
@@ -388,6 +390,9 @@ section.grid .text-3xl { margin: 0; font-family: var(--serif); font-size: 2.6rem
 .admin-export:hover .admin-export__menu, .admin-export:focus-within .admin-export__menu { display: grid; }
 .admin-export__menu button { border: 0; border-radius: 5px; padding: .65rem .75rem; background: transparent; color: var(--ink); font-size: .62rem; text-align: left; }
 .admin-export__menu button:hover { background: #f5f1e8; }
+.admin-export__group { display: grid; gap: .15rem; padding: .35rem; border-bottom: 1px solid #eee8dd; }
+.admin-export__group:last-child { border-bottom: 0; }
+.admin-export__group strong { padding: .45rem .75rem .25rem; color: var(--gold); font-size: .48rem; letter-spacing: .06em; text-transform: uppercase; }
 .admin-table { overflow-x: auto; }
 .admin-table table { width: 100%; border-collapse: collapse; }
 .admin-table th { padding: 1rem 1rem; border-bottom: 1px solid #e7e0d4; background: #faf8f4; color: var(--brown); font-size: .48rem; font-weight: 700; letter-spacing: .07em; text-align: left; text-transform: uppercase; white-space: nowrap; }
