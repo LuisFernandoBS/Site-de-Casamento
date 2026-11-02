@@ -62,6 +62,11 @@ export async function updateGuest(
     Omit<Guest, "id" | "created_at" | "updated_at" | "source">
   >,
 ): Promise<Guest> {
+  const { data: sessionData } = await supabase.auth.getSession()
+  if (!sessionData.session) {
+    throw new Error("Sua sessão expirou. Entre novamente no painel administrativo.")
+  }
+
   const { data, error } = await supabase
     .from("guests")
     .update(updates)
@@ -69,7 +74,12 @@ export async function updateGuest(
     .select("*")
     .single()
 
-  if (error || !data) throw new Error(error?.message ?? "Não foi possível atualizar")
+  if (error || !data) {
+    if (error?.code === "42501" || error?.code === "PGRST301" || error?.message?.toLowerCase().includes("row-level security") || error?.message?.toLowerCase().includes("forbidden")) {
+      throw new Error("Você não tem permissão para atualizar convidados. Entre novamente ou confira as permissões administrativas.")
+    }
+    throw new Error(error?.message ?? "Não foi possível atualizar")
+  }
   return mapRow(data as GuestRow)
 }
 
