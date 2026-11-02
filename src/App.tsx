@@ -30,7 +30,7 @@ import {
   useScroll,
   useTransform,
 } from "motion/react"
-import { letters, prayerParagraphs, wedding } from "./data/wedding"
+import { letters, prayerParagraphs, prayerReference, wedding } from "./data/wedding"
 import { submitRsvp, type RsvpPayload } from "./services/rsvp"
 import favicon from "./assets/favicon.png"
 import heroPhoto from "./assets/img-1.jpg"
@@ -330,6 +330,11 @@ function Prayer() {
             </Reveal>
           ))}
         </div>
+        <Reveal className="prayer-reference">
+          <span aria-hidden="true">“</span>
+          <blockquote>{prayerReference.text}</blockquote>
+          <cite>{prayerReference.reference}</cite>
+        </Reveal>
       </div>
     </section>
   )

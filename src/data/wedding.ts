@@ -17,8 +17,12 @@ export const prayerParagraphs = [
   "Tu és o Dono da festa, o Teu querer é o que mais importa e não há nada e nem ninguém mais importante que o Senhor!",
   "Nós te amamos, precisamos de Ti e reconhecemos a Tua soberania e paternidade sobre nós.",
   "Seja feita a Tua vontade, assim na terra como no céu, desde agora e para sempre. Amém, amém e amém!",
-  "Para que vejam, saibam, considerem e juntamente entendam que a mão do Senhor fez isso, e o Santo de Israel criou. — Isaías 41:20",
 ]
+
+export const prayerReference = {
+  text: "Para que vejam, saibam, considerem e juntamente entendam que a mão do Senhor fez isso, e o Santo de Israel criou.",
+  reference: "Isaías 41:20",
+}
 
 export const letters = [
   {
